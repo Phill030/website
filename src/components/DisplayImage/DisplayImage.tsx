@@ -17,7 +17,10 @@ export default function DisplayImage({ src, alt, query }: DisplayImageProps) {
   const router = useRouter();
 
   const [isHovered, setIsHovered] = useState(false);
-  const onMouseEnter = () => setIsHovered(true);
+  const onMouseEnter = () => {
+    if (!isOpen && !isModalLoaded) setIsHovered(true);
+    else setIsHovered(false);
+  };
   const onMouseLeave = () => setIsHovered(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +43,7 @@ export default function DisplayImage({ src, alt, query }: DisplayImageProps) {
   }, [searchParams, query]);
 
   return (
-    <div className={styles.displayImage}>
+    <div className={styles.displayImage} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Image
         src={src}
         alt={alt}
@@ -58,8 +61,6 @@ export default function DisplayImage({ src, alt, query }: DisplayImageProps) {
           openModal();
           setIsHovered(false);
         }}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
       />
       <p className={`${styles.imageName} ${isHovered ? styles.visible : styles.hidden}`}>{alt}</p>
 
