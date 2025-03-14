@@ -23,11 +23,11 @@ export default function DisplayImage({ src, alt, query }: DisplayImageProps) {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
-    router.push(`?img=${query}`);
+    router.push(`?img=${query}`, { scroll: false });
   };
   const closeModal = () => {
     setIsOpen(false);
-    router.push("/photography");
+    router.push("/photography", { scroll: false });
   };
 
   const [isModalLoaded, setIsModalLoaded] = useState(false);
