@@ -19,7 +19,7 @@ import img10 from "~/public/photos/IMG_5365.jpg";
 import img11 from "~/public/photos/IMG_5369.jpg";
 import img12 from "~/public/photos/IMG_5376.jpg";
 import { Metadata } from "next";
-import { SearchParams } from "next/dist/server/request/search-params";
+import { Suspense } from "react";
 
 const images = [
   { query: "img1", src: img1, alt: "Landgrafenschloss" },
@@ -36,8 +36,13 @@ const images = [
   { query: "img12", src: img12, alt: "RE97 Marburg (Lahn)" },
 ];
 
-export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
-  const imgParam = searchParams?.img;
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const imgParam = (await searchParams)?.img;
   const image = images.find((img) => img.query === imgParam);
 
   if (image) {
@@ -49,7 +54,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
         description: `View the photo: ${image.alt}`,
         images: [
           {
-            url: image.src.src,
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}${image.src.src}`,
             alt: image.alt,
             width: 1200,
             height: 630,
@@ -60,7 +65,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
         card: "summary_large_image",
         title: `Phill030 | Photography - ${image.alt}`,
         description: `View the photo: ${image.alt}`,
-        images: [image.src.src],
+        images: [`${process.env.NEXT_PUBLIC_BASE_URL}${image.src.src}`],
       },
     };
   }
@@ -73,7 +78,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
       description: "Explore my photography collection.",
       images: [
         {
-          url: bgImage.src,
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}${bgImage.src}`,
           width: 1200,
           height: 630,
           alt: "Photography Collection",
@@ -84,7 +89,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
       card: "summary_large_image",
       title: "Phill030 | Photography",
       description: "Explore my photography collection.",
-      images: [bgImage.src],
+      images: [`${process.env.NEXT_PUBLIC_BASE_URL}${bgImage.src}`],
     },
   };
 }
@@ -100,7 +105,9 @@ export default function Page() {
           <h1>Photography</h1>
           {images.map((img) => (
             <div key={img.query} className={styles.item}>
-              <DisplayImage src={img.src} alt={img.alt} query={img.query} />
+              <Suspense>
+                <DisplayImage src={img.src} alt={img.alt} query={img.query} />
+              </Suspense>
             </div>
           ))}
 
