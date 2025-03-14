@@ -18,6 +18,76 @@ import img9 from "~/public/photos/IMG_5327.jpg";
 import img10 from "~/public/photos/IMG_5365.jpg";
 import img11 from "~/public/photos/IMG_5369.jpg";
 import img12 from "~/public/photos/IMG_5376.jpg";
+import { Metadata } from "next";
+import { SearchParams } from "next/dist/server/request/search-params";
+
+const images = [
+  { query: "img1", src: img1, alt: "Landgrafenschloss" },
+  { query: "img2", src: img2, alt: "Marburg" },
+  { query: "img3", src: img3, alt: "Parkdeck" },
+  { query: "img4", src: img4, alt: "Regionalexpress 146 251" },
+  { query: "img5", src: img5, alt: "Hbf. Marburg" },
+  { query: "img6", src: img6, alt: "RE98 nach Gießen" },
+  { query: "img7", src: img7, alt: "Ludwig-Schuler-Brücke" },
+  { query: "img8", src: img8, alt: "Mini" },
+  { query: "img9", src: img9, alt: "Rathaus" },
+  { query: "img10", src: img10, alt: "Hbf. Marburg Gleis 5" },
+  { query: "img11", src: img11, alt: "Hbf. Parkdeck" },
+  { query: "img12", src: img12, alt: "RE97 Marburg (Lahn)" },
+];
+
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const imgParam = searchParams?.img;
+  const image = images.find((img) => img.query === imgParam);
+
+  if (image) {
+    return {
+      title: `Phill030 | Photography - ${image.alt}`,
+      description: `View the photo: ${image.alt}`,
+      openGraph: {
+        title: `Phill030 | Photography - ${image.alt}`,
+        description: `View the photo: ${image.alt}`,
+        images: [
+          {
+            url: image.src.src,
+            alt: image.alt,
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `Phill030 | Photography - ${image.alt}`,
+        description: `View the photo: ${image.alt}`,
+        images: [image.src.src],
+      },
+    };
+  }
+
+  return {
+    title: "Phill030 | Photography",
+    description: "Explore my photography collection.",
+    openGraph: {
+      title: "Phill030 | Photography",
+      description: "Explore my photography collection.",
+      images: [
+        {
+          url: bgImage.src,
+          width: 1200,
+          height: 630,
+          alt: "Photography Collection",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Phill030 | Photography",
+      description: "Explore my photography collection.",
+      images: [bgImage.src],
+    },
+  };
+}
 
 export default function Page() {
   return (
@@ -28,42 +98,11 @@ export default function Page() {
       <main>
         <div className={styles.gridContainer}>
           <h1>Photography</h1>
-          <div className={styles.item}>
-            <DisplayImage src={img1} alt="Landgrafenschloss" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img2} alt="Marburg" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img3} alt="Parkdeck" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img4} alt="Regionalexpress 146 251" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img5} alt="Hbf. Marburg" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img6} alt="RE98 nach Gießen" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img7} alt="Ludwig-Schuler-Brücke" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img8} alt="Mini" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img9} alt="Rathaus" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img10} alt="Hbf. Marburg Gleis 5" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img11} alt="Hbf. Parkdeck" />
-          </div>
-          <div className={styles.item}>
-            <DisplayImage src={img12} alt="RE97 Marburg (Lahn)" />
-          </div>
+          {images.map((img) => (
+            <div key={img.query} className={styles.item}>
+              <DisplayImage src={img.src} alt={img.alt} query={img.query} />
+            </div>
+          ))}
 
           {/* <div className={`${styles.item} ${styles.doubleSize}`}>
             <h2>Camera</h2>

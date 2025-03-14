@@ -3,23 +3,41 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import styles from "./DisplayImage.module.scss";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type DisplayImageProps = {
   src: string | StaticImport;
   alt: string;
+  query?: string;
 };
 
-export default function DisplayImage({ src, alt }: DisplayImageProps) {
+export default function DisplayImage({ src, alt, query }: DisplayImageProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [isHovered, setIsHovered] = useState(false);
   const onMouseEnter = () => setIsHovered(true);
   const onMouseLeave = () => setIsHovered(false);
 
   const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = () => {
+    setIsOpen(true);
+    router.push(`?img=${query}`);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    router.push("/photography");
+  };
 
   const [isModalLoaded, setIsModalLoaded] = useState(false);
+
+  useEffect(() => {
+    const imgParam = searchParams.get("img");
+    if (imgParam === query) {
+      setIsOpen(true);
+    }
+  }, [searchParams, query]);
 
   return (
     <div className={styles.displayImage}>
