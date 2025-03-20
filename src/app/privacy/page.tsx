@@ -9,7 +9,7 @@ export default function Page() {
       <main>
         <div className={styles.gridContainer}>
           <div className={styles.preface}>
-            <h1>Privacy Policy for phill030.de</h1>
+            <h1 style={{ textAlign: "center" }}>Privacy Policy for phill030.de</h1>
             <p>
               This Privacy Policy explains how `phill030.de` ("we," "our," or "us") collects, uses, and protects your personal data when you
               visit our website. By using this website, you agree to the terms outlined in this policy.
