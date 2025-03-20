@@ -41,30 +41,32 @@ export default function Page() {
           <h2>Third-Party Sharing</h2>
           <p>
             We do <strong>not</strong> sell, trade, or rent your personal data. However, we may share information with:
-            <ul>
-              <li>
-                <strong>Legal Compliance</strong>: If required by law, we may disclose information to comply with legal obligations.
-              </li>
-            </ul>
           </p>
+          <ul>
+            <li>
+              <strong>Legal Compliance</strong>: If required by law, we may disclose information to comply with legal obligations.
+            </li>
+          </ul>
           <h2>Your Rights Under GDPR</h2>
           <p>
             As a user located in the European Union, you have the following rights under the{" "}
             <strong>General Data Protection Regulation (GDPR)</strong>:
-            <ul>
-              <li>
-                <strong>Access:</strong> You can request a copy of the data we hold about you.
-              </li>
-              <li>
-                <strong>Correction:</strong> You can request that we correct or update your data.
-              </li>
-              <li>
-                <strong>Deletion:</strong> You can request that we delete your data.
-              </li>
-              <li>
-                <strong>Objection:</strong> You can object to the processing of your data.
-              </li>
-            </ul>
+          </p>
+          <ul>
+            <li>
+              <strong>Access:</strong> You can request a copy of the data we hold about you.
+            </li>
+            <li>
+              <strong>Correction:</strong> You can request that we correct or update your data.
+            </li>
+            <li>
+              <strong>Deletion:</strong> You can request that we delete your data.
+            </li>
+            <li>
+              <strong>Objection:</strong> You can object to the processing of your data.
+            </li>
+          </ul>
+          <p>
             To exercise any of these rights, please contact us at{" "}
             <a href="mailto:contact@phill030.de">
               <strong>contact@phill030.de</strong>
