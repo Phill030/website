@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   ],
   publisher: "Phill030",
   creator: "Phill030",
+  category: "Programming",
 };
 
 export default function RootLayout({
