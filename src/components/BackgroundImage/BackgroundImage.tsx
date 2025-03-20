@@ -21,7 +21,7 @@ export default function BackgroundImage({ src, alt, filter = "brightness(40%)", 
         overflow: "hidden",
       }}
     >
-      <Image src={src} alt={alt} layout="fill" objectFit="cover" quality={100} style={{ filter }} draggable={draggable} />
+      <Image src={src} alt={alt} fill quality={100} style={{ objectFit: "cover", filter }} draggable={draggable} />
     </div>
   );
 }
