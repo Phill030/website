@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <BackgroundImage src={backgroundImage} alt="Background image" filter="brightness(75%)" />
 
-      <main className={styles.main}>
+      <main>
         <h1>MAINTENANCE</h1>
       </main>
 
