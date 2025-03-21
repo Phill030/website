@@ -4,6 +4,8 @@ import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 import bgImage from "~/public/photos/IMG_5280.jpg";
 import Footer from "@/components/Footer/Footer";
 import DisplayImage from "@/components/DisplayImage/DisplayImage";
+import { Metadata } from "next";
+import { Suspense } from "react";
 
 // Images
 import img1 from "~/public/photos/IMG_5264.jpg";
@@ -18,8 +20,6 @@ import img9 from "~/public/photos/IMG_5327.jpg";
 import img10 from "~/public/photos/IMG_5365.jpg";
 import img11 from "~/public/photos/IMG_5369.jpg";
 import img12 from "~/public/photos/IMG_5376.jpg";
-import { Metadata } from "next";
-import { Suspense } from "react";
 
 const images = [
   { query: "img1", src: img1, alt: "Landgrafenschloss" },
