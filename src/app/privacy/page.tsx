@@ -6,6 +6,7 @@ export default function Page() {
   return (
     <div className={styles.page}>
       <Header />
+      <div className={styles.gradient} />
       <main>
         <div className={styles.gridContainer}>
           <div className={styles.preface}>
