@@ -1,6 +1,5 @@
 import Header from "@/components/Header/Header";
 import styles from "./page.module.scss";
-import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 import bgImage from "~/public/photos/IMG_5280.jpg";
 import Footer from "@/components/Footer/Footer";
 import DisplayImage from "@/components/DisplayImage/DisplayImage";
@@ -20,6 +19,8 @@ import img9 from "~/public/photos/IMG_5327.jpg";
 import img10 from "~/public/photos/IMG_5365.jpg";
 import img11 from "~/public/photos/IMG_5369.jpg";
 import img12 from "~/public/photos/IMG_5376.jpg";
+import img13 from "~/public/photos/IMG_5304.jpg";
+import img14 from "~/public/photos/IMG_5309.jpg";
 
 const images = [
   { query: "img1", src: img1, alt: "Landgrafenschloss" },
@@ -34,6 +35,8 @@ const images = [
   { query: "img10", src: img10, alt: "Hbf. Marburg Gleis 5" },
   { query: "img11", src: img11, alt: "Hbf. Parkdeck" },
   { query: "img12", src: img12, alt: "RE97 Marburg (Lahn)" },
+  { query: "img13", src: img13, alt: "Alter Botanischer Garten" },
+  { query: "img14", src: img14, alt: "Alter Botanischer Garten" },
 ];
 
 type Props = {
@@ -98,7 +101,6 @@ export default function Page() {
   return (
     <div className={styles.page}>
       <Header />
-      <BackgroundImage src={bgImage} alt="Background image" filter="brightness(40%)" />
 
       <main>
         <div className={styles.gridContainer}>
@@ -110,11 +112,6 @@ export default function Page() {
               </Suspense>
             </div>
           ))}
-
-          {/* <div className={`${styles.item} ${styles.doubleSize}`}>
-            <h2>Camera</h2>
-            <p>I'm using a Canon EOS 550D blablabla blebleble blobloblo blublublu hu blublublublublu blub blu blu blu blu blu blublublu blu</p>
-          </div> */}
         </div>
       </main>
 
