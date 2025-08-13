@@ -43,7 +43,7 @@ export default function Page() {
                   <strong>RAM:</strong> 16GB DDR4 ECC
                 </li>
                 <li>
-                  <strong>Storage:</strong> 2 x 2TB HDD (Mirror)
+                  <strong>Storage:</strong> 2 x 2TB HDD (Mirror) & 2x 1TB HDD (Mirror)
                 </li>
                 <li>
                   <strong>Network:</strong> Dual Gigabit Ethernet (LACP)

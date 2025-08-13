@@ -12,16 +12,18 @@ export default function Page() {
           <div className={styles.preface}>
             <h1 style={{ textAlign: "center" }}>Privacy Policy for phill030.de</h1>
             <p>
-              This Privacy Policy explains how `phill030.de` ("we," "our," or "us") collects, uses, and protects your personal data when you
-              visit our website. By using this website, you agree to the terms outlined in this policy.
+              This Privacy Policy explains how <strong>phill030.de</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) collects,
+              uses, and protects your personal data when you visit our website. By using this website, you agree to the terms outlined in
+              this policy.
             </p>
           </div>
           <h2>Information We Collect</h2>
           <p>
-            We collect the following information automatically when you visit our website: - <strong>User-Agent Information:</strong> This
-            includes data about your browser, operating system, and device type, which is logged by our web server (NGINX) for technical and
-            security purposes. We do not collect any personally identifiable information (e.g., names, email addresses, or IP addresses)
-            unless you voluntarily provide it (e.g., via email).
+            We automatically collect certain technical information when you visit our website. This includes your{" "}
+            <strong>IP address</strong> and <strong>User-Agent</strong>, which contains details about your browser, operating system, and
+            device type. This information is logged by our web server (NGINX) for security and statistical purposes. We do not collect any
+            additional personally identifiable information, such as names or email addresses, unless you provide it voluntarily (for
+            example, via email).
           </p>
           <h2>How We Use Your Information</h2>
           <p>The information we collect is used for the following purposes:</p>
@@ -31,9 +33,9 @@ export default function Page() {
           </ul>
           <h2>Data Storage and Security</h2>
           <p>
-            We take the security of your data seriously. All data collected is stored on servers secured with <strong>encryption</strong>{" "}
-            and protected by <strong>SSH-keys</strong>. We implement technical and organizational measures to safeguard your information
-            against unauthorized access, loss, or misuse.
+            We take the security of your data seriously. All log data containing IP addresses and User-Agent information is retained for a
+            maximum of 30 days and then automatically deleted or anonymized. We implement appropriate technical and organizational measures
+            to protect this data against unauthorized access, alteration, disclosure, or destruction.
           </p>
           <h2>Cookies and Tracking Technologies</h2>
           <p>
@@ -41,13 +43,9 @@ export default function Page() {
           </p>
           <h2>Third-Party Sharing</h2>
           <p>
-            We do <strong>not</strong> sell, trade, or rent your personal data. However, we may share information with:
+            We do <strong>not</strong> sell, trade, or rent your personal data to third parties. We do not share your information with any
+            third-party services, except where required by law.
           </p>
-          <ul>
-            <li>
-              <strong>Legal Compliance</strong>: If required by law, we may disclose information to comply with legal obligations.
-            </li>
-          </ul>
           <h2>Your Rights Under GDPR</h2>
           <p>
             As a user located in the European Union, you have the following rights under the{" "}
@@ -81,11 +79,11 @@ export default function Page() {
           </p>
           <h2>Changes to This Privacy Policy</h2>
           <p>
-            We may update this Privacy Policy from time to time. Any changes will be posted on this page with the updated "Last Updated"
-            date. We encourage you to review this policy periodically.
+            We may update this Privacy Policy from time to time. Any changes will be posted on this page with the updated &quot;Last
+            Updated&quot; date. We encourage you to review this policy periodically.
           </p>
           <p style={{ marginTop: "10px" }}>
-            <strong>Last Updated:</strong> 19.03.2025 20:31
+            <strong>Last Updated:</strong> 09.08.2025 18:38
           </p>
         </div>
       </main>

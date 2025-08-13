@@ -10,7 +10,53 @@
   main {
     display: flex;
     flex-direction: column;
-    gap: 32px;
     grid-row-start: 2;
+    align-items: center;
+    padding: 10px;
+
+    .title {
+      font-size: 4rem;
+      user-select: none;
+
+      .name {
+        color: #4acc39;
+
+        @media (pointer: fine) {
+          background: linear-gradient(#4acc39 0 0) bottom left/ var(--underline-width, 0%) 0.1em no-repeat;
+          transition: background-size 0.5s;
+          &:hover {
+            --underline-width: 100%;
+          }
+        }
+      }
+    }
+
+    .description {
+      font-size: 1.2rem;
+      font-weight: 300;
+      text-align: center;
+      user-select: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px;
+
+    main {
+      .title {
+        font-size: 11vw;
+
+        .name {
+          background: none;
+          transition: none;
+        }
+      }
+
+      .description {
+        font-size: 4.4vw;
+      }
+    }
   }
 }

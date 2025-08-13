@@ -7,7 +7,7 @@
   gap: 64px;
   font-family: var(--font-lexend-deca);
 
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 2px);
+  background-image: radial-gradient(circle, #ffffff33 1px, transparent 2px);
   background-size: 40px 40px;
   background-color: black;
 
@@ -19,13 +19,14 @@
     left: 0;
 
     height: 50%;
-    background: linear-gradient(to top, #f3be2b30, transparent);
+    background: linear-gradient(to top, #4acc3930, transparent);
 
     opacity: 0.5;
   }
 
   main {
     grid-row-start: 2;
+    z-index: 999;
     height: 100%;
     width: 60%;
     color: white;
