@@ -42,6 +42,7 @@ const images: Image[] = [
   {
     src: img3,
     alt: "Parkdeck",
+    alt: "Parkhaus",
   },
   {
     src: img4,
@@ -81,7 +82,7 @@ const images: Image[] = [
   },
   {
     src: img15,
-    alt: "Pardeck Marburg",
+    alt: "Parkdeck Marburg",
   },
   {
     src: img16,
