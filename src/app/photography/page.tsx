@@ -41,7 +41,6 @@ const images: Image[] = [
   },
   {
     src: img3,
-    alt: "Parkdeck",
     alt: "Parkhaus",
   },
   {
