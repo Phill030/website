@@ -93,8 +93,9 @@ export default function Page() {
                 <a href="https://github.com/revive101/aurorium/releases" rel="noopener noreferrer" target="_blank">
                   GitHub releases
                 </a>{" "}
-                or build it yourself. You need Rust installed to build from source. Clone the repo, run 'cargo build --release' to compile,
-                or 'cargo run' for development. The app automatically gets the latest game files from version 2.0 onwards.
+                or build it yourself. You need Rust installed to build from source. Clone the repo, run &apos;cargo build --release&apos; to
+                compile, or &apos;cargo run&apos; for development. The app automatically gets the latest game files from version 2.0
+                onwards.
               </p>
             }
           />
@@ -132,7 +133,7 @@ export default function Page() {
             }
             description={
               <p>
-                We welcome all contributions! Whether you're a Rust wizard or a curious apprentice, your input helps us grow. Read our
+                We welcome all contributions! Whether you&apos;re a Rust wizard or a curious apprentice, your input helps us grow. Read our
                 Contributing Guidelines, fork the repo, make your changes, and submit a pull request. Report bugs or suggest features via
                 GitHub issues. Contributors can request the @Contributor role in our Discord server - just make sure your GitHub account is
                 linked to your Discord profile.
@@ -169,8 +170,8 @@ export default function Page() {
                 </a>{" "}
                 to meet other fans, developers, and contributors working on the Revive101 project! Our community is passionate about
                 preserving the magic of Wizard101 and creating new opportunities for players to experience the Spiral. Connect with fellow
-                wizards, share your experiences, participate in development discussions, and be part of the revival effort that's bringing
-                this beloved game back to life.
+                wizards, share your experiences, participate in development discussions, and be part of the revival effort that&apos;s
+                bringing this beloved game back to life.
               </p>
             }
           />
