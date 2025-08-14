@@ -19,7 +19,7 @@ export default function Page() {
 
       {typeof window !== "undefined" && window.innerWidth > 768 && (
         <>
-          <div className={styles.movingGradient} />
+          <div className={styles.movingGradient1} />
           <div className={styles.movingGradient2} />
           <div className={styles.movingGradient3} />
           <div className={styles.movingGradient4} />
