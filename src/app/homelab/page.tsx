@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Header from "@/components/Header/Header";
+import NavBar from "@/components/NavBar/NavBar";
+
 import styles from "./page.module.scss";
 
 // Images
@@ -12,7 +13,7 @@ import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 export default function Page() {
   return (
     <div className={styles.page}>
-      <Header />
+      <NavBar />
       <BackgroundImage src={backgroundImage} alt="Background image" />
 
       <main>

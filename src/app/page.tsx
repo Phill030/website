@@ -1,6 +1,7 @@
 import styles from "./page.module.scss";
 import backgroundImage from "~/public/photos/IMG_5278.jpg";
-import Header from "@/components/Header/Header";
+import NavBar from "@/components/NavBar/NavBar";
+
 import Footer from "@/components/Footer/Footer";
 import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Header />
+      <NavBar />
       <BackgroundImage src={backgroundImage} alt="Background image" filter="brightness(75%)" />
 
       <main>

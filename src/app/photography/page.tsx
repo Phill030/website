@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import styles from "./page.module.scss";
-import Header from "@/components/Header/Header";
+import NavBar from "@/components/NavBar/NavBar";
+
 import Footer from "@/components/Footer/Footer";
 import DisplayImage from "@/components/DisplayImage/DisplayImage";
 
@@ -134,12 +135,16 @@ export default function Page() {
 
   return (
     <div className={styles.page}>
-      <Header />
+      <NavBar />
       <div className={styles.gradient} />
-      {/* <div className={styles.movingGradient} />
-      <div className={styles.movingGradient2} />
-      <div className={styles.movingGradient3} />
-      <div className={styles.movingGradient4} /> */}
+      {typeof window !== "undefined" && window.innerWidth > 768 && (
+        <>
+          <div className={styles.movingGradient1} />
+          <div className={styles.movingGradient2} />
+          <div className={styles.movingGradient3} />
+          <div className={styles.movingGradient4} />
+        </>
+      )}
 
       <main>
         <div className={styles.masonryGrid}>

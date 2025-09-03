@@ -1,11 +1,12 @@
-import Header from "@/components/Header/Header";
+import NavBar from "@/components/NavBar/NavBar";
+
 import styles from "./page.module.scss";
 import Footer from "@/components/Footer/Footer";
 
 export default function Page() {
   return (
     <div className={styles.page}>
-      <Header />
+      <NavBar />
       <div className={styles.gradient} />
       <main>
         <div className={styles.gridContainer}>

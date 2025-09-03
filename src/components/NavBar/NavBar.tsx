@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./Header.module.scss";
+import styles from "./NavBar.module.scss";
 import Link from "next/link";
 
-export default function Header() {
+export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {

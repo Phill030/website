@@ -1,0 +1,71 @@
+.page {
+  display: grid;
+  grid-template-rows: 20px 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  gap: 64px;
+  font-family: var(--font-lexend-deca);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-image: radial-gradient(circle, #ffffff33 1px, transparent 2px);
+  background-size: 40px 40px;
+  background-color: black;
+
+  main {
+    grid-row-start: 2;
+    z-index: 2;
+
+    width: 100%;
+    padding: 0 20%;
+    padding-bottom: 5rem;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // base 4 equal columns
+    grid-auto-rows: auto; // adjust row height automatically
+    gap: 1rem;
+
+    .userPanel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .infoPanel {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .managePanel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
+}
+
+.panel {
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.panelWindow {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #0e0d0d;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  .bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}

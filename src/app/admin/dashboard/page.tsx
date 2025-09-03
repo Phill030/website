@@ -1,0 +1,93 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/auth";
+import styles from "./page.module.scss";
+import RolePill from "@/components/RolePill/RolePill";
+import SignOutButton from "@/components/SignOutButton/SignOutButton";
+import ApiKeyList from "@/components/ApiKeyList/ApiKeysList";
+import UserList from "@/components/UserList/UserList";
+
+export const Roles = {
+  Guest: {
+    color: "#e27a25",
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M7.92 7.54c-.8-.34-1.14-1.33-.66-2.05C8.23 4.05 9.85 3 11.99 3c2.35 0 3.96 1.07 4.78 2.41c.7 1.15 1.11 3.3.03 4.9c-1.2 1.77-2.35 2.31-2.97 3.45c-.15.27-.24.49-.3.94c-.09.73-.69 1.3-1.43 1.3c-.87 0-1.58-.75-1.48-1.62c.06-.51.18-1.04.46-1.54c.77-1.39 2.25-2.21 3.11-3.44c.91-1.29.4-3.7-2.18-3.7c-1.17 0-1.93.61-2.4 1.34c-.35.57-1.08.75-1.69.5M14 20c0 1.1-.9 2-2 2s-2-.9-2-2s.9-2 2-2s2 .9 2 2"
+        />
+      </svg>
+    ),
+  },
+  User: {
+    color: "#258de2",
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"
+        />
+      </svg>
+    ),
+  },
+  Admin: {
+    color: "#e2c625",
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12 2.15q.2 0 .363.025t.337.1l6 2.25q.575.225.938.725T20 6.375V9.5q0 .425-.287.713T19 10.5t-.712-.288T18 9.5V6.4l-6-2.25L6 6.4v4.7q0 1.25.363 2.5t1 2.375T8.913 18t1.987 1.475q.375.2.538.575t.012.75q-.175.4-.562.55t-.763-.05Q7.3 19.9 5.65 17.075T4 11.1V6.375q0-.625.363-1.125t.937-.725l6-2.25q.175-.075.35-.1T12 2.15M17 22q-2.075 0-3.537-1.463T12 17t1.463-3.537T17 12t3.538 1.463T22 17t-1.463 3.538T17 22m0-5q.625 0 1.063-.437T18.5 15.5t-.437-1.062T17 14t-1.062.438T15.5 15.5t.438 1.063T17 17m0 3q.625 0 1.175-.238t.975-.687q.125-.15.1-.337t-.225-.288q-.475-.225-.987-.337T17 18t-1.037.113t-.988.337q-.2.1-.225.288t.1.337q.425.45.975.688T17 20"
+        />
+      </svg>
+    ),
+  },
+} as {
+  [key: string]: { color: string; svg: React.ReactNode };
+};
+
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user || !session.discordProfile) {
+    redirect("/admin/auth");
+  }
+
+  if (hasEmptyFields(session.user)) {
+    redirect("/admin/auth");
+  }
+
+  return (
+    <div className={styles.page}>
+      <main>
+        <PanelElement style={{ alignItems: "center", textAlign: "center", gridColumn: "span 1" }} className={styles.userPanel}>
+          <img src={session.user.image!} style={{ borderRadius: "50%", pointerEvents: "none", userSelect: "none" }} />
+          <h1>{session.discordProfile?.global_name}</h1>
+          <RolePill role="Admin" svg={Object.values(Roles)[2].svg} color="#e2c625" />
+          <SignOutButton />
+        </PanelElement>
+        <PanelElement style={{ gridColumn: "span 3" }} className={styles.managePanel}>
+          <UserList profile={session.discordProfile} />
+        </PanelElement>
+        <PanelElement style={{ gridColumn: "span 4" }} className={styles.managePanel}>
+          <ApiKeyList profile={session.discordProfile} />
+        </PanelElement>
+      </main>
+    </div>
+  );
+}
+
+function PanelElement({ style, className, children }: { style?: React.CSSProperties; className?: string; children?: React.ReactNode }) {
+  return (
+    <div className={`${styles.panel} ${className}`} style={style}>
+      {children}
+    </div>
+  );
+}
+
+function hasEmptyFields(obj: Record<string, any>): boolean {
+  return Object.values(obj).some((value) => value === "" || value === null || value === undefined);
+}

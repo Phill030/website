@@ -1,7 +1,8 @@
 "use client";
 
 import styles from "./page.module.scss";
-import Header from "@/components/Header/Header";
+import NavBar from "@/components/NavBar/NavBar";
+
 import Footer from "@/components/Footer/Footer";
 import { ReactNode, useRef } from "react";
 
@@ -14,7 +15,7 @@ export default function Page() {
 
   return (
     <div className={styles.page}>
-      <Header />
+      <NavBar />
       <div className={styles.gradient} />
 
       {typeof window !== "undefined" && window.innerWidth > 768 && (
