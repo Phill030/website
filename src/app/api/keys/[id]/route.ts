@@ -1,10 +1,13 @@
-import { deleteApiKey, getApiKey } from "@/lib/actions";
+import { deleteApiKey, getApiKey, isUserAuthorized } from "@/lib/actions";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 export async function DELETE(request: Request,{ params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.discordProfile) return Response.json({ success: false }, { status: 401 });
+
+  const isAuthorized = await isUserAuthorized(session.discordProfile.id);
+  if (!isAuthorized) return Response.json({ success: false }, { status: 403 });
 
   const { id } = await params;
   const keyId = parseInt(id, 10);
@@ -16,6 +19,9 @@ export async function DELETE(request: Request,{ params }: { params: Promise<{ id
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.discordProfile) return Response.json({ success: false }, { status: 401 });
+
+  const isAuthorized = await isUserAuthorized(session.discordProfile.id);
+  if (!isAuthorized) return Response.json({ success: false }, { status: 403 });
 
   const { id } = await params;
   const keyId = parseInt(id, 10);

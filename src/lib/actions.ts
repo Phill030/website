@@ -32,11 +32,11 @@ async function getUsers(): Promise<Array<{ id: string; name: string; avatar: str
   return userList;
 }
 
-async function isUserAuthorized(userId: string): Promise<boolean> {
+async function isUserAuthorized(userId: string, minRole: number = 1): Promise<boolean> {
   const user = await db
     .select()
     .from(users)
-    .where(and(eq(users.discordId, userId), gte(users.role, 1)))
+    .where(and(eq(users.discordId, userId), gte(users.role, minRole)))
     .execute();
 
   return user.length == 1;
