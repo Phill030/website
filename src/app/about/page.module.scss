@@ -26,11 +26,7 @@
     width: 100%;
     padding: 0 10%;
 
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr); // base 4 equal columns
-    // grid-auto-rows: auto; // adjust row height automatically
     gap: 1rem;
-
     &:last-child {
       padding-bottom: 5rem;
     }
@@ -149,5 +145,48 @@
   }
   50% {
     transform: translateY(20%);
+  }
+}
+
+@media (max-width: 1340px) {
+  .page section {
+    padding: 0 5%;
+  }
+
+  .aboutSection {
+    .description {
+      grid-column: span 8;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    .description {
+      grid-column: span 10;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .aboutSection {
+    .profile {
+      .info {
+        h1 {
+          font-size: 8vw;
+        }
+
+        p {
+          font-size: 4vw;
+        }
+      }
+    }
+    .traits {
+      gap: 1rem;
+    }
+  }
+
+  .trait {
+    font-size: 1rem;
   }
 }

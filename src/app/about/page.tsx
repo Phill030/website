@@ -72,13 +72,13 @@ export default function Page() {
           <div className={styles.profile}>
             <Image alt="Profile Picture" src={FoxSniff} width={100} height={100} style={{ borderRadius: "50%" }} />
             <div className={styles.info}>
-              <h1>Hi, I'm Phill</h1>
+              <h1>Hi, I&apos;m Phill</h1>
               <p>Backend Developer & Computer Science Student</p>
             </div>
           </div>
           <p className={styles.description}>
-            I'm a Computer Science student who focuses on backend development, mostly working with Rust. I enjoy exploring cryptography and
-            secure systems, and I like tackling problems where performance and reliability really matter. A lot of my projects revolve
+            I&apos;m a Computer Science student who focuses on backend development, mostly working with Rust. I enjoy exploring cryptography
+            and secure systems, and I like tackling problems where performance and reliability really matter. A lot of my projects revolve
             around building practical tools.
           </p>
           <div className={styles.buttons}>
@@ -117,9 +117,8 @@ export default function Page() {
           </svg>
         </div>
       </section>
-      <section className={styles.projectsSection}>
-        <h2>Projects</h2>
-        <div className={styles.projects}>{/* Project components would go here */}</div>
+      <section className={styles.techStack}>
+        <h2>Tech Stack</h2>
       </section>
     </div>
   );
