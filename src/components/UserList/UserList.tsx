@@ -68,7 +68,7 @@ export default function UserList({ profile }: { profile: Profile | undefined }) 
       }
 
       const { users } = await res.json();
-      const updatedUsers = users.map((user: User) => ({
+      const updatedUsers: Array<User> = users.map((user: User) => ({
         ...user,
         joined: new Date(user.joined),
       }));
@@ -84,20 +84,12 @@ export default function UserList({ profile }: { profile: Profile | undefined }) 
           }))
         );
       } else {
-        setUsers([
-          ...updatedUsers.map((u: User) => ({
+        setUsers(
+          updatedUsers.map((u: User) => ({
             ...u,
             setRole: null,
-          })),
-          ...Array(5).fill({
-            id: "123",
-            joined: new Date("2022-01-01"),
-            role: 1,
-            name: "test",
-            avatar: "a_ea151dfc0ac8f646e8a66f164d32f730",
-            setRole: null,
-          } as User),
-        ]);
+          }))
+        );
       }
     };
 
