@@ -14,27 +14,35 @@
   border-radius: 0.5rem;
 }
 
-.userList {
-  border-spacing: 1rem;
+.tableWrapper {
+  flex: 1; /* take all available space in panel */
+  min-height: 0; /* required for proper scroll inside flex */
+  overflow-y: auto; /* scroll if needed */
+  overflow-x: auto; /* scroll horizontally if table too wide */
 
-  .userDesc {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .roleSelect {
+  table {
     width: 100%;
-    background-color: #0e0d0d;
-    border: 1px solid rgb(75 85 99 / 50%);
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    color: white;
-    cursor: pointer;
+    border-spacing: 1rem;
 
-    &:focus {
-      outline: none;
-      border-color: rgb(75 85 99 / 100%);
+    .userDesc {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .roleSelect {
+      width: 100%;
+      background-color: #0e0d0d;
+      border: 1px solid rgb(75 85 99 / 50%);
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      color: white;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: rgb(75 85 99 / 100%);
+      }
     }
   }
 }

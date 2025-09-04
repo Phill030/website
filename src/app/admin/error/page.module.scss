@@ -1,0 +1,37 @@
+.page {
+  display: grid;
+  grid-template-rows: 20px 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  gap: 64px;
+  font-family: var(--font-lexend-deca);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-image: radial-gradient(circle, #ffffff33 1px, transparent 2px);
+  background-size: 40px 40px;
+  background-color: black;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    align-items: center;
+
+    width: 80%;
+    color: white;
+
+    h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px #ff4d4d;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}

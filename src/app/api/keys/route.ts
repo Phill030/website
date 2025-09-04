@@ -2,7 +2,7 @@ import { createApiKey, getApiKeys, getApiKeysForUser, isUserAuthorized } from "@
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
-export async function GET(request: Request) {
+export async function GET(/*request: Request*/) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.discordProfile) return Response.json({ status: 401 });
 

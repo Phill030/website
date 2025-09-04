@@ -5,7 +5,7 @@ import styles from "./UserList.module.scss";
 import { DiscordAvatar } from "@/lib/util";
 import { Profile } from "@/lib/auth";
 import RolePill from "../RolePill/RolePill";
-import { Roles } from "@/app/admin/dashboard/page";
+import { Roles } from "@/app/admin/dashboard/util";
 
 const usersIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ export default function UserList({ profile }: { profile: Profile | undefined }) 
       }
 
       const { users } = await res.json();
-      const updatedUsers = users.map((user: any) => ({
+      const updatedUsers = users.map((user: User) => ({
         ...user,
         joined: new Date(user.joined),
       }));
@@ -84,17 +84,25 @@ export default function UserList({ profile }: { profile: Profile | undefined }) 
           }))
         );
       } else {
-        setUsers(
-          updatedUsers.map((u: User) => ({
+        setUsers([
+          ...updatedUsers.map((u: User) => ({
             ...u,
             setRole: null,
-          }))
-        );
+          })),
+          ...Array(5).fill({
+            id: "123",
+            joined: new Date("2022-01-01"),
+            role: 1,
+            name: "test",
+            avatar: "a_ea151dfc0ac8f646e8a66f164d32f730",
+            setRole: null,
+          } as User),
+        ]);
       }
     };
 
     fetchUsers();
-  }, []);
+  });
 
   return (
     <>
@@ -110,27 +118,29 @@ export default function UserList({ profile }: { profile: Profile | undefined }) 
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <table className={styles.userList}>
-        <thead style={{ textAlign: "left" }}>
-          <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Joined</th>
-            {users.some((u) => u.setRole) && <th>Change Role</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, idx) => {
-            // wait 500ms for inactivity, then update the list
+      <div className={styles.tableWrapper}>
+        <table>
+          <thead style={{ textAlign: "left" }}>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Joined</th>
+              {users.some((u) => u.setRole) && <th>Change Role</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, idx) => {
+              // wait 500ms for inactivity, then update the list
 
-            const namesMatch = user.name.toLowerCase().includes(searchTerm.toLowerCase());
-            const idMatch = user.id.includes(searchTerm);
-            if (namesMatch || idMatch) {
-              return <User key={idx} user={user} thisUser={profile?.id || ""}></User>;
-            }
-          })}
-        </tbody>
-      </table>
+              const namesMatch = user.name.toLowerCase().includes(searchTerm.toLowerCase());
+              const idMatch = user.id.includes(searchTerm);
+              if (namesMatch || idMatch) {
+                return <User key={idx} user={user} thisUser={profile?.id || ""}></User>;
+              }
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
@@ -154,7 +164,7 @@ function User({ user, thisUser }: { user: User; thisUser: string }) {
       {user.setRole && (
         <td>
           <select className={styles.roleSelect} value={user.role} onChange={(e) => user.setRole!(Number(e.target.value))}>
-            {Object.entries(Roles).map(([roleName, _], idx) => (
+            {Object.entries(Roles).map(([roleName], idx) => (
               <option key={roleName} value={idx}>
                 {roleName}
               </option>

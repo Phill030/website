@@ -32,11 +32,14 @@ export default function Page() {
           <h1 className={styles.title}>Aurorium</h1>
           <p className={styles.description}>A fast, efficient open-source server powering the revival of Wizard101.</p>
           <div className={styles.buttonContainer}>
-            <button className={styles.primaryButton} onClick={() => openLink("https://github.com/revive101/aurorium")}>
+            <button
+              className={`${styles.button} ${styles.primaryButton}`}
+              onClick={() => openLink("https://github.com/revive101/aurorium")}
+            >
               Get Started
             </button>
             <button
-              className={styles.secondaryButton}
+              className={`${styles.button} ${styles.secondaryButton}`}
               onClick={() =>
                 moreInfo.current?.scrollIntoView({
                   behavior: "smooth",

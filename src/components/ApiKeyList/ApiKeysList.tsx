@@ -124,7 +124,7 @@ export default function ApiKeyList({ profile }: { profile: Profile | undefined }
     };
 
     fetchKeys();
-  }, []);
+  });
 
   return (
     <>

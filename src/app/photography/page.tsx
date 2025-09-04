@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import styles from "./page.module.scss";
 import NavBar from "@/components/NavBar/NavBar";
@@ -102,36 +102,35 @@ export default function Page() {
   const [currentImage, setCurrentImage] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (currentImage === null) return;
 
     const nextIndex = (currentImage + 1) % images.length;
     setCurrentImage(nextIndex);
     setIsLoading(true);
-  };
+  }, [currentImage]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (currentImage === null) return;
 
     const prevIndex = (currentImage - 1 + images.length) % images.length;
     setCurrentImage(prevIndex);
     setIsLoading(true);
-  };
+  }, [currentImage]);
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (currentImage) {
+      if (currentImage !== null) {
         if (e.key === "Escape") {
           setCurrentImage(null);
           setIsLoading(false);
-        }
-        if (e.key === "ArrowRight") nextImage();
-        if (e.key === "ArrowLeft") prevImage();
+        } else if (e.key === "ArrowRight") nextImage();
+        else if (e.key === "ArrowLeft") prevImage();
       }
     };
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentImage]);
+  }, [currentImage, nextImage, prevImage]);
 
   return (
     <div className={styles.page}>
