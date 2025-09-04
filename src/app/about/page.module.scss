@@ -1,20 +1,153 @@
 .page {
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
+  grid-template-rows: 1fr;
   justify-items: center;
   min-height: 100svh;
   gap: 64px;
-
   font-family: var(--font-lexend-deca);
 
-  main {
-    grid-row-start: 2;
-    height: 100%;
-    color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 
-    .gridContainer {
-      display: grid;
+  background-image: radial-gradient(circle, #ffffff33 1px, transparent 2px);
+  background-size: 40px 40px;
+  background-color: black;
+
+  section {
+    scroll-snap-align: start;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    min-height: 100vh;
+    z-index: 2;
+
+    width: 100%;
+    padding: 0 10%;
+
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr); // base 4 equal columns
+    // grid-auto-rows: auto; // adjust row height automatically
+    gap: 1rem;
+
+    &:last-child {
+      padding-bottom: 5rem;
     }
+  }
+}
+
+.aboutSection {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  gap: 1rem;
+
+  .profile {
+    grid-column: span 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+
+      h1 {
+        font-size: 3rem;
+        color: white;
+      }
+    }
+  }
+
+  .description {
+    text-align: left;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    grid-column: span 6;
+  }
+
+  .buttons {
+    grid-column: span 10;
+    display: flex;
+    gap: 1rem;
+
+    .button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      padding: 0.75rem 1.25rem;
+      border-radius: 25000px;
+      font-size: 1rem;
+
+      text-decoration: none;
+      gap: 0.5rem;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .primary {
+      background-color: #0f172a;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: rgb(31, 45, 70);
+      }
+    }
+
+    .secondary {
+      background-color: white;
+      color: black;
+      border: 1px solid #e5e7eb;
+
+      &:hover {
+        background-color: #c5c5c5;
+      }
+    }
+  }
+
+  .traits {
+    grid-column: span 10;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+.trait {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  color: #a1a1a1;
+}
+
+.arrowDown {
+  position: absolute;
+  bottom: 1rem;
+
+  margin-top: 2rem;
+  border-radius: 50%;
+  animation: bounce 2s infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20%);
   }
 }
