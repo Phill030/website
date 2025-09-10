@@ -1,13 +1,11 @@
-"use client";
-
 import NavBar from "@/components/NavBar/NavBar";
 import styles from "./page.module.scss";
 import Footer from "@/components/Footer/Footer";
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
+import ProjectCard from "@/components/ProjectCard/ProjectCard";
 
-type Status = "Completed" | "In Progress" | "Planned";
-
-type Project = {
+export type Status = "Completed" | "In Progress" | "Planned";
+export type Project = {
   title: string;
   description: string;
   authors?: Array<string>;
@@ -19,49 +17,12 @@ type Project = {
   link: string;
 };
 
-const calendarIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-    <path
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16M7 14h.013m2.997 0h.005m2.995 0h.005m3 0h.005m-3.005 3h.005m-6.01 0h.005m2.995 0h.005"
-    />
-  </svg>
-);
-
-const usersIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-    <path
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2m1-17.87a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"
-    />
-  </svg>
-);
-
-const githubIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5c.08-1.25-.27-2.48-1-3.5c.28-1.15.28-2.35 0-3.5c0 0-1 0-3 1.5c-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5c-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </g>
-  </svg>
-);
-
 export default function Page() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
   const projects: Project[] = [
     {
       title: "Aurorium",
       description:
-        "A Rust-based backend server that powers the Revive101 project by automating the fetching, management, and distribution of Wizard101 client files to restore and maintain the gam's patch infrastructure.",
+        "A Rust-based backend server that powers the Revive101 project by automating the fetching, management, and distribution of Wizard101 client files to restore and maintain the game&apos;s patch infrastructure.",
       date: "10.2023",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -122,7 +83,7 @@ export default function Page() {
     },
     {
       title: "This Website",
-      description: "The very website you're on right now! Built with Next.js, TypeScript, and SCSS for a sleek, modern look.",
+      description: "The very website you&apos;re on right now! Built with Next.js, TypeScript, and SCSS for a sleek, modern look.",
       date: "04.2024",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -173,16 +134,7 @@ export default function Page() {
           <p className={styles.pageDescription}>A collection of my work, experiments, and creative endeavors.</p>
           <div className={styles.projectsContainer}>
             {projects.map((project, idx) => {
-              return (
-                <ProjectCard
-                  key={idx}
-                  project={project}
-                  onClick={() => {
-                    //  setSelectedProject(project)
-                    window.open(project.link, "_blank", "noopener,noreferrer");
-                  }}
-                />
-              );
+              return <ProjectCard key={idx} project={project} />;
             })}
           </div>
         </div>
@@ -192,48 +144,3 @@ export default function Page() {
     </div>
   );
 }
-
-function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
-  return (
-    <div className={styles.card} onClick={onClick} style={{ "--shadow-color": `${project.color}33` } as React.CSSProperties}>
-      <div className={styles.cardHighlight} style={{ backgroundColor: project.color }} />
-      <div className={styles.header}>
-        <div className={styles.icon}>{project.icon}</div>
-        <div className={styles.title}>
-          <h2>{project.title}</h2>
-          <div className={styles.meta}>
-            <p>
-              {calendarIcon} {project.date}
-            </p>
-            <p>
-              {usersIcon} {project.authors ? `${project.authors.length} People` : "Phill030"}
-            </p>
-          </div>
-        </div>
-      </div>
-      <p className={styles.description}>{project.description}</p>
-      <div className={styles.attributes}>
-        <StatusBadge status={project.status || "Planned"} />
-        <div className={styles.techList}>
-          {project.stack?.slice(0, 3).map((tech) => (
-            <span key={tech} className={styles.tech}>
-              {tech}
-            </span>
-          ))}
-          {project.stack && project.stack.length > 3 && <span className={styles.moreTech}>+{project.stack.length - 3} more</span>}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const StatusBadge: React.FC<{ status: Status }> = ({ status }) => {
-  switch (status) {
-    case "Completed":
-      return <span className={`${styles.statusBadge} ${styles.completed}`}>Completed</span>;
-    case "In Progress":
-      return <span className={`${styles.statusBadge} ${styles.inProgress}`}>In Progress</span>;
-    case "Planned":
-      return <span className={`${styles.statusBadge} ${styles.planned}`}>Planned</span>;
-  }
-};
