@@ -2,9 +2,51 @@
 
 import styles from "./page.module.scss";
 import NavBar from "@/components/NavBar/NavBar";
-
 import Footer from "@/components/Footer/Footer";
 import { ReactNode, useRef } from "react";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const title = "Aurorium";
+  const description =
+    "Aurorium is one of my personal projects I built to explore Rust. It's part of Revive101, aiming to revive Wizard101, a project close to my heart.";
+
+  return {
+    title,
+    description,
+    keywords: [
+      "Aurorium",
+      "Phill",
+      "Rust Project",
+      "Backend Development",
+      "Performance",
+      "Secure Systems",
+      "Open Source",
+      "Systems Programming",
+      "Reliability",
+      "Practical Tools",
+    ],
+    authors: [
+      {
+        name: "Phill",
+        url: "https://phill030.de",
+      },
+    ],
+    creator: "Phill",
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: "https://phill030.de/projects/Aurorium",
+      locale: "en_US",
+    },
+    twitter: {
+      title,
+      description,
+      card: "summary_large_image",
+    },
+  };
+}
 
 export default function Page() {
   const moreInfo = useRef<HTMLDivElement | null>(null);
