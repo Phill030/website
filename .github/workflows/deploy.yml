@@ -26,6 +26,10 @@ jobs:
         run: pnpm install
 
       - name: Build the project
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
         run: pnpm build
 
       - name: Archive production build
