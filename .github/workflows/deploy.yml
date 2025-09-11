@@ -26,6 +26,8 @@ jobs:
         run: |
           pnpm install
           pnpm drizzle-kit push
+        env:
+          DB_FILE: ${{ secrets.DB_FILE }}
 
       - name: Build the project
         env:
