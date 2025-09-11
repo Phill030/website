@@ -1,0 +1,58 @@
+name: CI/CD Deploy to Server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22.14"
+          cache: "pnpm"
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build the project
+        run: pnpm build
+
+      - name: Archive production build
+        run: tar -czf website.tar.gz .next public package.json pnpm-lock.yaml next.config.ts
+
+      - name: Copy to server
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: website.tar.gz
+          target: ~/deployments/phill030.de
+
+      - name: Deploy to server
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/deployments/phill030.de
+            tar -xzf website.tar.gz
+            rm website.tar.gz
+            pnpm install -P
+            pnpm add drizzle-kit
+            pnpm drizzle-kit push
+            pnpm remove drizzle-kit
+            screen -S website -X quit || true
+            screen -dmS website bash -lc "pnpm start -p 1111"
