@@ -42,23 +42,38 @@ const CapIcon = (
 );
 
 export async function generateMetadata(): Promise<Metadata> {
+  const title = "About - Phill";
+  const description =
+    "Hi! I'm Phill, a Computer Science student and backend developer specializing in Rust. I build practical tools and explore cryptography, secure systems, performance, and reliability.";
+
   return {
-    title: "About - Phill",
-    keywords: ["About", "Phill", "Backend Developer", "Computer Science Student", "Rust", "Cryptography", "Secure Systems"],
+    title,
+    keywords: [
+      "Phill",
+      "About",
+      "Backend Developer",
+      "Rust",
+      "Computer Science",
+      "Cryptography",
+      "Secure Systems",
+      "Performance",
+      "Reliability",
+      "Practical Tools",
+    ],
     authors: [{ name: "Phill", url: "https://phill030.de" }],
     creator: "Phill",
-    description:
-      "I'm Phill, a Computer Science student and backend developer specializing in Rust. I enjoy building practical tools and exploring cryptography and secure systems.",
+    description,
     openGraph: {
-      title: "About - Phill",
-      description:
-        "Hi! I'm Phill, a backend developer and computer science student, mostly working with Rust. I enjoy exploring cryptography and secure systems, and I like tackling problems where performance and reliability really matter. A lot of my projects revolve around building practical tools.",
+      title,
+      description,
       type: "website",
+      siteName: "Phill030",
+      locale: "en_US",
+      url: "https://phill030.de/about",
     },
     twitter: {
-      title: "About - Phill",
-      description:
-        "Hi! I'm Phill, a backend developer and computer science student, mostly working with Rust. I enjoy exploring cryptography and secure systems, and I like tackling problems where performance and reliability really matter. A lot of my projects revolve around building practical tools.",
+      title,
+      description,
       card: "summary_large_image",
     },
   };

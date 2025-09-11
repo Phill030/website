@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import Footer from "@/components/Footer/Footer";
 import { CSSProperties } from "react";
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
+import { Metadata } from "next";
 
 export type Status = "Completed" | "In Progress" | "Planned";
 export type Project = {
@@ -16,6 +17,48 @@ export type Project = {
   status?: Status;
   link: string;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Projects - Built by Phill",
+    description:
+      "A collection of projects I've built or contributed to—ranging from Rust-based tools and neural networks to reverse engineering and backend infrastructure. I focus on performance, reliability, and solving real-world problems.",
+    keywords: [
+      "Phill",
+      "Projects",
+      "Rust Developer",
+      "Backend Development",
+      "Neural Networks",
+      "Reverse Engineering",
+      "Revive101",
+      "KiWad-Unpacker",
+      "Wizard101",
+      "Secure Systems",
+      "Practical Tools",
+      "Open Source",
+    ],
+    authors: [
+      {
+        name: "Phill",
+        url: "https://phill030.de",
+      },
+    ],
+    creator: "Phill",
+    openGraph: {
+      title: "Projects - Built by Phill",
+      description:
+        "These are the tools and systems I've built—mostly in Rust—focused on performance, security, and practicality. From reverse engineering game infrastructure to designing neural networks, I enjoy solving tough backend problems.",
+      type: "website",
+      url: "https://phill030.de/projects",
+      locale: "en_US",
+    },
+    twitter: {
+      title: "Projects - Built by Phill",
+      description: "Explore my work: Rust-based tools, reverse engineering, and backend systems built for performance and reliability.",
+      card: "summary_large_image",
+    },
+  };
+}
 
 export default function Page() {
   const projects: Project[] = [
