@@ -4,8 +4,8 @@ import styles from "./page.module.scss";
 import NavBar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import { ReactNode, useRef } from "react";
-import { Metadata } from "next";
 
+// import { Metadata } from "next";
 // export async function generateMetadata(): Promise<Metadata> {
 //   const title = "Aurorium";
 //   const description =
