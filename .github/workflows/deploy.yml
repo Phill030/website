@@ -24,10 +24,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+        run: pnpm drizzle-kit push
 
       - name: Build the project
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DB_FILE: ${{ secrets.DB_FILE }}
           NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
         run: pnpm build
@@ -57,8 +58,5 @@ jobs:
             tar -xzf website.tar.gz
             rm website.tar.gz
             pnpm install -P
-            pnpm add drizzle-kit
-            pnpm drizzle-kit push
-            pnpm remove drizzle-kit
             screen -S website -X quit || true
             screen -dmS website bash -lc "pnpm start -p 1111"
