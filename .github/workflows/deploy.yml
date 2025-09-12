@@ -50,7 +50,7 @@ jobs:
           target: ~/deployments/phill030.de
 
       - name: Deploy to server
-        uses: appleboy/scp-action@v1.0.0
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -59,6 +59,7 @@ jobs:
           script: |
             cd ~/deployments/phill030.de
             tar -xzf website.tar.gz
+            rm website.tar.gz
             pnpm install -P
             screen -S website -X quit || true
             screen -dmS website bash -lc "pnpm start -p 1111"
