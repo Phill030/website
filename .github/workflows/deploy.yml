@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Archive production build
-        run: tar -czf website.tar.gz .next public package.json pnpm-lock.yaml next.config.ts
+        run: tar -czf website.tar.gz .next public node_modules package.json pnpm-lock.yaml next.config.ts
 
       - name: Copy to server
         uses: appleboy/scp-action@v1.0.0
