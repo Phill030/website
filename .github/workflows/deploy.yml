@@ -66,5 +66,6 @@ jobs:
             /root/.local/share/pnpm/pnpm add drizzle-kit
             /root/.local/share/pnpm/pnpm drizzle-kit push
             /root/.local/share/pnpm/pnpm remove drizzle-kit
+            rm -rf src/ drizzle.config.ts
             screen -S website -X quit || true
             screen -dmS website bash -c "/root/.local/share/pnpm/pnpm start -p 1111"
