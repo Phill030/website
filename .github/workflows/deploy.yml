@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Archive production build
-        run: tar -czf website.tar.gz .next public package.json pnpm-lock.yaml next.config.ts ${{ secrets.DB_FILE_NAME }}
+        run: tar -czf website.tar.gz .next public package.json pnpm-lock.yaml next.config.ts drizzle.config.ts src
 
       - name: Copy to server
         uses: appleboy/scp-action@v1.0.0
@@ -63,5 +63,8 @@ jobs:
             tar -xzf website.tar.gz
             rm website.tar.gz
             /root/.local/share/pnpm/pnpm install -P
+            /root/.local/share/pnpm/pnpm add drizzle-kit
+            /root/.local/share/pnpm/pnpm drizzle-kit push
+            /root/.local/share/pnpm/pnpm remove drizzle-kit
             screen -S website -X quit || true
             screen -dmS website bash -c "/root/.local/share/pnpm/pnpm start -p 1111"
