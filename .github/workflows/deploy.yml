@@ -57,6 +57,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            source ~/.bashrc
             cd ~/deployments/phill030.de
             tar -xzf website.tar.gz
             rm website.tar.gz
