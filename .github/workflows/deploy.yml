@@ -58,6 +58,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             source ~/.bashrc
+            source ~/.nvm/nvm.sh
             cd ~/deployments/phill030.de
             tar -xzf website.tar.gz
             rm website.tar.gz
