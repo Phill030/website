@@ -59,7 +59,6 @@ jobs:
           script: |
             cd ~/deployments/phill030.de
             tar -xzf website.tar.gz
-            rm website.tar.gz
             pnpm install -P
             screen -S website -X quit || true
             screen -dmS website bash -lc "pnpm start -p 1111"
