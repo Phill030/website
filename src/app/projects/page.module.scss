@@ -30,7 +30,7 @@
       align-items: center;
 
       width: 100%;
-      height: 100svh;
+      min-height: 100svh;
 
       .pageTitle {
         font-size: 4rem;
@@ -62,5 +62,42 @@
         gap: 1rem;
       }
     }
+  }
+}
+
+@media (max-width: 1467px) {
+  .page main {
+    padding: 0 10%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .page main {
+    padding: 0 5%;
+  }
+
+  .page main .fullscreenHero .projectsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .page main {
+    padding: 0 4%;
+
+    .fullscreenHero {
+      .pageTitle {
+        font-size: 3rem;
+      }
+      .pageDescription {
+        font-size: 1rem;
+        text-align: center;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .page main .fullscreenHero .projectsContainer {
+    grid-template-columns: 1fr;
   }
 }
